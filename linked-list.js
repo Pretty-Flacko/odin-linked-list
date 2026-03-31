@@ -1,11 +1,11 @@
-class Node {
+export class Node {
   constructor(value = null) {
     this.value = value;
     this.nextNode = null;
   }
 }
 
-class LinkedList {
+export class LinkedList {
   constructor() {
     this.head = null;
   }
@@ -20,7 +20,7 @@ class LinkedList {
 
     let current = this.head;
 
-    while (current.nextNode !== null) {
+    while (current.nextNode) {
       current = current.nextNode;
     }
 
@@ -38,7 +38,7 @@ class LinkedList {
     let count = 0;
     let current = this.head;
 
-    while (current !== null) {
+    while (current) {
       count++;
       current = current.nextNode;
     }
@@ -46,25 +46,29 @@ class LinkedList {
     return count;
   }
 
-  head() {
-    return this.head;
+  getHead() {
+    if (!this.head) return undefined;
+
+    return this.head.value;
   }
 
-  tail() {
+  getTail() {
+    if (!this.head) return undefined;
+
     let current = this.head;
 
-    while (current.nextNode !== null) {
+    while (current.nextNode) {
       current = current.nextNode;
     }
 
-    return current;
+    return current.value;
   }
 
   at(index) {
     let current = this.head;
     let i = 0;
 
-    while (current !== null) {
+    while (current) {
       if (i === index) return current.value;
       current = current.nextNode;
       i++;
@@ -74,6 +78,8 @@ class LinkedList {
   }
 
   pop() {
+    if (!this.head) return undefined;
+
     let removedHead = this.head.value;
     this.head = this.head.nextNode;
 
@@ -83,7 +89,7 @@ class LinkedList {
   contains(value) {
     let current = this.head;
 
-    while (current !== null) {
+    while (current) {
       if (current.value === value) return true;
       current = current.nextNode;
     }
@@ -95,8 +101,10 @@ class LinkedList {
     let current = this.head;
     let index = 0;
 
-    while (current !== null) {
+    while (current) {
       if (current.value === value) return index;
+
+      current = current.nextNode;
       index++;
     }
 
@@ -104,10 +112,13 @@ class LinkedList {
   }
 
   toString() {
-    let current = this.head;
     let result = "";
 
-    while (current !== null) {
+    if (!this.head) return result;
+
+    let current = this.head;
+
+    while (current) {
       result += `( ${current.value} ) -> `;
       current = current.nextNode;
     }

@@ -46,11 +46,11 @@ class LinkedList {
     return count;
   }
 
-  getHead() {
+  head() {
     return this.head;
   }
 
-  getTail() {
+  tail() {
     let current = this.head;
 
     while (current.nextNode !== null) {
@@ -65,7 +65,7 @@ class LinkedList {
     let i = 0;
 
     while (current !== null) {
-      if (i === index) return current;
+      if (i === index) return current.value;
       current = current.nextNode;
       i++;
     }
@@ -89,5 +89,17 @@ class LinkedList {
     }
 
     return false;
+  }
+
+  findIndex(value) {
+    let current = this.head;
+    let index = 0;
+
+    while (current !== null) {
+      if (current.value === value) return index;
+      index++;
+    }
+
+    return -1;
   }
 }

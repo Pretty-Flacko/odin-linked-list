@@ -72,4 +72,11 @@ class LinkedList {
 
     return undefined;
   }
+
+  pop() {
+    let removedHead = this.head.value;
+    this.head = this.head.nextNode;
+
+    return removedHead;
+  }
 }
